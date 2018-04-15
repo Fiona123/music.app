@@ -29,6 +29,7 @@
 			}
 		},
 		mounted () {
+			console.log('slider mounted')
 			setTimeout(() => {
 				this._setSliderWidth()
 				this._initDots()
@@ -46,6 +47,16 @@
 				this.slider.refresh()
 			})
 		},
+		activated () {
+			console.log('slider-activeted')
+		},
+		deactivated () {
+			console.log('slider-deactivated')
+		},
+		destroyed () {
+			console.log('slider-destroyed')
+			clearTimeout(this.timer)
+		},
 		data () {
 			return {
 				dots: [],
@@ -62,7 +73,6 @@
 					addClass(child, 'slider-item')
 					child.style.width = sliderWidth + 'px'
 					width += sliderWidth
-					console.log('loop' + width)
 				}
 				if (this.loop && !resize) {
 					width += 2 * sliderWidth
