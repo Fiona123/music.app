@@ -14,7 +14,7 @@
 		props: {
 			probeType: {
 				type: Number,
-				default: 3
+				default: 1
 			},
 			click: {
 				type: Boolean,
@@ -27,6 +27,10 @@
 			data: {
 				type: Array || Object,
 				default: null
+			},
+			listenScroll: {
+				type: Boolean,
+				default: false
 			}
 		},
 		watch: {
@@ -46,15 +50,23 @@
 				this.scroll = new BScroll(this.$refs.scrollWrapper, {
 					probeType: this.probeType,
 					click: this.click,
-					pullDownRefresh: {
-						threshold: 50,
-						stop: 20
-					},
 					eventPassthrough: this.direction === DIRECTION_V ? DIRECTION_H : DIRECTION_V
 				})
+				if (this.listenScroll) {
+					let me = this
+					this.scroll.on('scroll', (pos) => {
+						me.$emit('scroll', pos)
+					})
+				}
 			},
 			refresh () {
 				this.scroll && this.scroll.refresh()
+			},
+			scrollTo () {
+				this.scroll && this.scroll.scrollTo.apply(this.scroll, arguments)
+			},
+			scrollToElement () {
+				this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments)
 			}
 		}
 	}

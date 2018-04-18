@@ -1,6 +1,6 @@
 <template>
 	<div class="recomment-wrapper">
-		<refresh class="refresh" :loading="loadingHttpCount!=0"></refresh>
+		<loading :loading="loadingHttpCount!=0"></loading>
 		<scroll class="recommend" :data="discList">
 			<div v-if="recommends.length" class="slider-wrapper">
 				<slider >
@@ -34,7 +34,7 @@
 	import {ERR_OK} from 'api/config'
 	import Slider from 'base/slider/slider'
 	import Scroll from 'base/scroll/scroll'
-	import Refresh from 'base/refresh/refresh'
+	import Loading from 'base/loading/loading'
 
 	export default {
 		created () {
@@ -72,7 +72,7 @@
 		components: {
 			Slider,
 			Scroll,
-			Refresh
+			Loading
 		}
 	}
 </script>
