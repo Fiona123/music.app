@@ -24,7 +24,5 @@ export default {
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "common/stylus/variable"
-  #app
-    .components
-      z-index -1
+
 </style>
