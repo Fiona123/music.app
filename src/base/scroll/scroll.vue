@@ -4,7 +4,7 @@
 	</div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 	import BScroll from 'better-scroll'
 
 	const DIRECTION_H = 'horizontal'
@@ -31,6 +31,10 @@
 			listenScroll: {
 				type: Boolean,
 				default: false
+			},
+			mouseWheel: {
+				type: Boolean,
+				default: true
 			}
 		},
 		watch: {
@@ -50,7 +54,10 @@
 				this.scroll = new BScroll(this.$refs.scrollWrapper, {
 					probeType: this.probeType,
 					click: this.click,
-					eventPassthrough: this.direction === DIRECTION_V ? DIRECTION_H : DIRECTION_V
+					// eventPassthrough: this.direction === DIRECTION_V ? DIRECTION_H : DIRECTION_V,
+					scrollY: this.direction === DIRECTION_V,
+					scrollX: this.direction === DIRECTION_H,
+					mouseWheel: this.mouseWheel
 				})
 				if (this.listenScroll) {
 					let me = this
