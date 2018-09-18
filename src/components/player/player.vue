@@ -49,7 +49,7 @@
                             <i class="icon-prev"></i>
                         </div>
                         <div class="icon i-center" :class="disableCls">
-                            <i class="needsclick" :class="playIcon"></i>
+                            <i @click="togglePlaying" :class="playIcon"></i>
                         </div>
                         <div class="icon i-right" :class="disableCls">
                             <i class="icon-next"></i>
@@ -115,13 +115,20 @@ export default {
         ...mapGetters([
             'fullScreen',
             'playList',
-            'currentSong'
+            'currentSong',
+            'playing'
         ])
     },
     watch: {
         currentSong() {
             this.$nextTick(() => {
                 this.$refs.audio.play()
+            })
+        },
+        playing(newPlaying) {
+            const audio = this.$refs.audio
+            this.$nextTick(() => {
+                newPlaying ? audio.play() : audio.pause()
             })
         }
     },
@@ -177,6 +184,9 @@ export default {
             this.$refs.cdWrapper.style.transition = ''
             this.$refs.cdWrapper.style[transform] = ''
         },
+        togglePlaying() {
+            this.setPlayingState(!this.playing)
+        },
         _getPosAndScale() {
             // 左下角的位置
             const targetWidth = 40
@@ -196,7 +206,8 @@ export default {
             }
         },
         ...mapMutations({
-            setFullScreen: 'SET_FULL_SCREEN'
+            setFullScreen: 'SET_FULL_SCREEN',
+            setPlayingState: 'SET_PLAYING_STATE'
         })
     }
 }
