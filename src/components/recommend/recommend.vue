@@ -29,7 +29,7 @@
 	</div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 	import {getRecommend, getDiscList} from 'api/recommend'
 	import {ERR_OK} from 'api/config'
 	import Slider from 'base/slider/slider'

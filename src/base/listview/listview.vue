@@ -34,7 +34,7 @@
 	</div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 	import Scroll from 'base/scroll/scroll'
 	import {getData} from 'common/js/dom'
 	import Loading from 'base/loading/loading'

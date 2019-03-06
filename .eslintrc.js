@@ -29,6 +29,7 @@ module.exports = {
     'no-tabs':0,
     'space-before-function-parent':0,
     'indent': 0,
-    'no-tabs': 0
+    'no-tabs': 0,
+    'space-before-function-paren': 0
   }
 }
